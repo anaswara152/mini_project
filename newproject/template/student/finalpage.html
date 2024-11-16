@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{% url 'finalpage' %}" method="post">
+        {% csrf_token %}
+        <label for="new_password">new_password</label>
+        <input type="new_pasword" name="new_password" id="new_password">
+        <br>
+        <br>
+        <label for="confirm_password">confirm_password</label>
+        <input type="confirm_password" name="confirm_password" id="confirm_password">
+        <br>
+        <br>
+        <input type="submit" value="submit">
+    </form>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>alert("{{msg}}")</script>
+    {% endfor %}
+    {% endif %}
+    
+</body>
+</html>

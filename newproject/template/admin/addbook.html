@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+<script type="text/javascript">
+    function validation(){
+        var num=/^[0-9]+$/
+        var alpha=/^[a-zA-z]+$/
+        var name=document.getElementById("name")
+        var author=document.getElementById("author")
+        var coverphoto=document.getElementById("coverphoto")
+        var numberof_copies=document.getElementById("nm")
+        var categoryid=document.getElementById("categoryid")
+        if(name.value.length==0){
+            alert('name required')
+            return false
+
+        }
+        else if(!name.value.match(alpha)){
+            alert('it should contain only letters')
+            name.focus()
+            return false
+        }
+        else if (author.value.length==0){
+            alert('author is required')
+            return false
+        }
+        else if (coverphoto.value.length==0){
+            alert('coverphoto is required')
+            return false
+        }
+        else if (numberof_copies.value.length==0){
+            alert('numberof_copies is required')
+            return false
+        }
+        else if (categoryid.value.length==0){
+            alert('categoryid is required')
+            return false
+        }
+        else{
+            return true;
+        }
+    }
+</script>    
+<br><br>
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-2 col-sm-3 col-xs-12">
+        </div>
+        <div class="col-lg-4 col-md-2 col-sm-3 col-xs-12">
+   <div class="container mt-3">
+    <h2></h2>
+    <form action="{% url 'addbook1'  %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="mb-3 mt-3">
+        <label for="name">Name</label>
+        <input type="name" class="form-control" id="name" placeholder="Enter name" name="name">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="author">Author</label>
+        <input type="author" class="form-control" id="author" placeholder="Enter name" name="author">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="coverphoto">coverphoto</label>
+        <input type="file" class="form-control" id="coverphoto" placeholder="Enter name" name="file">
+        </div>
+      <div class="mb-3 mt-3">
+        <label for="numberof_copies">Numberof_copies</label>
+        <input type="number" class="form-control" id="nm" placeholder="Enter name" name="numberof_copies">
+        </div>
+      <div class="mb-3 mt-3">
+        <label for="category">CATEGORY</label>
+        <select name="category" id="categoryid">
+            <option value="">--select--</option>
+
+        {% for i in m %}
+        <option value="{{i.id}}">{{i.name}}</option>
+        {% endfor %}
+        </select>
+        </div>
+        <br>
+        <br>
+    <div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+  </div>
+</div>
+<div class="col-lg-4 col-md-2 col-sm-3 col-xs-12">
+</div>
+</div>
+</div>
+</div>
+<br><br>
+{% endblock %}
+
+
+

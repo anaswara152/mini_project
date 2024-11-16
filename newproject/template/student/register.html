@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script src="/static/jquery-1.8.3.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#username").change(function(){
+          var user=$("#username").val();
+
+          $.ajax({
+            url:"{% url 'get_username' %}",
+            data:{'us':user},
+            success:function(data)
+            {
+              if(data.valid == "exist")
+            {
+              alert("username already exist")
+            }
+            }
+          })
+        })
+    })
+</script>
+
+
+<div class="container"></div>
+    <div class="row">
+        <div class="col-lg-4 col-md-2 col-sm-3 col-xs-12">
+        </div>
+        <div class="col-lg-4 col-md-2 col-sm-3 col-xs-12">
+<div class="container mt-3">
+    <h2></h2>
+    <form action="" method="post">
+        {% csrf_token %}
+      <div class="mb-3 mt-3">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="username">Name</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter username" name="name">
+      </div>
+      <div class="mb-3 mt-3"></div>
+        <label for="age">Age</label>
+        <input type="age" class="form-control" id="age" placeholder="Enter username" name="age">
+      </div>
+      <div class="mb-3">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+      </div>
+    
+      <div class="mb-3 mt-3">
+        <label for="comment">Adddress:</label>
+        <textarea class="form-control" rows="5" id="comment" name="address"></textarea>
+      </div>
+
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>
+        <label class="form-check-label" for="radio1">Option 1</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">
+        <label class="form-check-label" for="radio2">Option 2</label>
+      </div>
+      <br>
+      <br>
+      <div class="mb-3">
+        <label for="profilephoto">Profilephoto</label>
+        <input type="file" class="form-control" id="file" placeholder="Enter password" name="profilephoto">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  </div>
+  <div class="col-lg-4 col-md-2 col-sm-3 col-xs-12">
+</div>
+</div>
+</div>
+{% endblock %}
